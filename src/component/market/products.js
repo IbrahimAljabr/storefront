@@ -9,16 +9,22 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import { electronics, food } from "../redux/action";
+import { electronics, food, add } from "../redux/action";
 
 const Products = (props) => {
+  let products = [];
+  if (props?.products?.arrOfProducts) {
+    products = props.products.arrOfProducts.filter((product) => {
+      return product.inventory > 0;
+    });
+  }
   return (
     <Box>
       <Container>
-        <Grid container spacing={5}>
-          {props?.products?.arrOfProducts.map((product) => {
+        <Grid container spacing={4}>
+          {products.map((product) => {
             return (
-              <Grid item xs={12} sm={4}>
+              <Grid key={product.name} item xs={12} sm={4}>
                 <Card>
                   <CardActionArea>
                     <CardMedia
@@ -41,7 +47,13 @@ const Products = (props) => {
                     <Button size="small" color="primary">
                       View Details
                     </Button>
-                    <Button size="small" color="primary">
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={() => {
+                        props.add(product.name);
+                      }}
+                    >
                       Add TO Cart
                     </Button>
                   </CardActions>
@@ -59,6 +71,6 @@ const mapStateToProps = (state) => {
   return { products: state.products };
 };
 
-const mapDispatchToProps = { electronics, food };
+const mapDispatchToProps = { electronics, food, add };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

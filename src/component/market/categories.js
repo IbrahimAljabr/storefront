@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { food, electronics } from "../redux/action";
+import { food, electronics, add } from "../redux/action";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 

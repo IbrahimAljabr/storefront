@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -14,6 +15,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Nav() {
+  const state = useSelector((state) => {
+    return {
+      candidates: state.candidates,
+    };
+  });
   const classes = useStyles();
 
   return (
@@ -24,7 +30,7 @@ export default function Nav() {
             Store
           </Typography>
           <IconButton aria-label="cart">
-            <Badge badgeContent={1} color="secondary">
+            <Badge badgeContent={100} color="secondary">
               <ShoppingCartOutlinedIcon />
             </Badge>
           </IconButton>
