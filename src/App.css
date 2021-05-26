@@ -16,12 +16,26 @@ footer {
 .in-list {
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: "1px solid rgba(0, 0, 0, .125)";
+  clear: both;
 }
 .list-head {
   border: "1px solid rgba(0, 0, 0, .125)";
   box-shadow: "none";
-  margin-top: 20px;
-  position: fixed;
-  width: 16%;
-  float: right;
+  margin: 20px 15px 0 10px !important;
+  position: fixed !important;
+  width: 18%;
+  right: 0;
+  z-index: 2;
+}
+.con-all {
+  margin-bottom: 160px;
+  clear: both;
+}
+.navbarr {
+  position: fixed !important;
+  margin-bottom: 200px;
+  top: 0;
+}
+#root {
+  margin-top: 80px;
 }

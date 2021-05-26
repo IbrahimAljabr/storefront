@@ -18,3 +18,9 @@ export const add = (category) => {
     payload: category,
   };
 };
+export const remove = (category) => {
+  return {
+    type: "REMOVE",
+    payload: category,
+  };
+};

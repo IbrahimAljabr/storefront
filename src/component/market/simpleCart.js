@@ -4,15 +4,20 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import { useDispatch, useSelector } from "react-redux";
-import { electronics, food, add } from "../redux/action";
+import { remove } from "../redux/action";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 
 export default function CartList() {
-  let listItems = [];
   const state = useSelector((state) => {
+    console.log("🚀🚀🚀 ~~~~ state ~~~~ state", state);
     return {
-      candidates: state.candidates,
+      list: state,
     };
   });
+  // console.log("🚀🚀🚀 ~~~~ state ~~~~ state", state);
+
   const dispatch = useDispatch();
 
   const [expanded, setExpanded] = React.useState("panel1");
@@ -30,11 +35,34 @@ export default function CartList() {
         onChange={handleChange("panel1")}
       >
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>Cart List</Typography>
+          <Grid item xs={11}>
+            <Typography>Cart List</Typography>
+          </Grid>
+          <Grid item xs={1}>
+            <Typography>+</Typography>
+          </Grid>
         </AccordionSummary>
-        <AccordionDetails className="in-list">
-          <Typography>Lorem ipsum dolor</Typography>
-        </AccordionDetails>
+
+        {state.list.cartList.cart.map((item, idx) => {
+          return (
+            <AccordionDetails key={item + idx} className="in-list">
+              <Grid item xs={9}>
+                <Typography>{item}</Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Button
+                  size="small"
+                  color="secondary"
+                  // onClick={() => {
+                  //   dispatch(remove(state));
+                  // }}
+                >
+                  <DeleteOutlinedIcon />
+                </Button>
+              </Grid>
+            </AccordionDetails>
+          );
+        })}
       </Accordion>
     </div>
   );

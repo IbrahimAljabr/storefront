@@ -6,7 +6,7 @@ const initialState = {
       description: "you can eat . ",
       url: "https://post.healthline.com/wp-content/uploads/2020/09/Do_Apples_Affect_Diabetes_and_Blood_Sugar_Levels-732x549-thumbnail-1-732x549.jpg",
       price: "73$",
-      inventory: 15,
+      inventory: 5,
     },
     {
       name: "Laptops",
@@ -30,7 +30,7 @@ const initialState = {
       description: "you can eat .",
       url: "https://media.healthyfood.com/wp-content/uploads/2019/07/The-lost-plot-growing-carrots-iStock-471680420.jpg",
       price: "67$",
-      inventory: 15,
+      inventory: 5,
     },
     {
       name: "MB&F ",
@@ -54,7 +54,7 @@ const initialState = {
       description: "you can eat . ",
       url: "https://all-americaselections.org/wp-content/uploads/2019/06/Watermelon-Mambo.jpg",
       price: "73$",
-      inventory: 10,
+      inventory: 2,
     },
     {
       name: "Flafel",
@@ -62,7 +62,7 @@ const initialState = {
       description: "you can eat . ",
       url: "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2019/07/Falafel-7.jpg",
       price: "73$",
-      inventory: 15,
+      inventory: 3,
     },
     {
       name: "Shawerma",
@@ -70,7 +70,7 @@ const initialState = {
       description: "you can eat . ",
       url: "https://images.deliveryhero.io/image/talabat/MenuItems/2019-11-17_Talabat_J_637313960956729027.jpg",
       price: "73$",
-      inventory: 15,
+      inventory: 4,
     },
     {
       name: "PS5",
@@ -94,35 +94,39 @@ const initialState = {
       description: "to use tv. ",
       url: "https://cdn.alzashop.com/ImgW.ashx?fd=f16&cd=WS1017c3",
       price: "73$",
-      inventory: 0,
+      inventory: 3,
     },
   ],
+  products: [],
 };
 
 const productsList = (state, action) => {
   state = initialState;
   const { type, payload } = action;
-  let arrOfProducts;
   let arrOfList = [];
   switch (type) {
     case "ELECTRONICS":
-      arrOfProducts = state.arrOfProducts.filter((product) => {
+      state.products = state.arrOfProducts.filter((product) => {
         return product.category === payload;
       });
-      return { arrOfProducts };
+      return { ...state, arrOfProducts: state.products };
 
     case "FOOD":
-      arrOfProducts = state.arrOfProducts.filter((product) => {
+      state.products = state.arrOfProducts.filter((product) => {
         return product.category === payload;
       });
-      return { arrOfProducts };
+      return { ...state, arrOfProducts: state.products };
 
     case "ADD":
       arrOfList = state.arrOfProducts.filter((product) => {
-        return product.name === payload;
+        if (product === payload) {
+          product.inventory -= 1;
+        }
+
+        return product === payload;
       });
-      console.log("🚀🚀🚀 ~~~~ arrOfList=state.arrOfProducts.filter ~~~~ arrOfList", arrOfList);
-      return { arrOfList };
+
+      return { arrOfProducts: state.products, arrOfList: arrOfList };
 
     default:
       return null;

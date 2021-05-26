@@ -17,20 +17,21 @@ const useStyles = makeStyles((theme) => ({
 export default function Nav() {
   const state = useSelector((state) => {
     return {
-      candidates: state.candidates,
+      number: state.cartList,
     };
   });
+
   const classes = useStyles();
 
   return (
     <>
-      <AppBar color="default" position="static">
+      <AppBar className="navbarr" color="default" position="static">
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
             Store
           </Typography>
           <IconButton aria-label="cart">
-            <Badge badgeContent={100} color="secondary">
+            <Badge badgeContent={state.number.num} color="secondary">
               <ShoppingCartOutlinedIcon />
             </Badge>
           </IconButton>

@@ -19,7 +19,7 @@ const Products = (props) => {
     });
   }
   return (
-    <Box>
+    <Box className="con-all">
       <Container>
         <Grid container spacing={4}>
           {products.map((product) => {
@@ -38,8 +38,12 @@ const Products = (props) => {
                       <Typography gutterBottom variant="h5" component="h2">
                         {product.name}
                       </Typography>
+                      <Typography component="p">{product.price}</Typography>
                       <Typography variant="body2" color="textSecondary" component="p">
                         {product.description}
+                      </Typography>
+                      <Typography variant="body" color="textSecondary" component="p">
+                        {product.inventory} Left
                       </Typography>
                     </CardContent>
                   </CardActionArea>
@@ -51,7 +55,7 @@ const Products = (props) => {
                       size="small"
                       color="primary"
                       onClick={() => {
-                        props.add(product.name);
+                        props.add(product);
                       }}
                     >
                       Add TO Cart
