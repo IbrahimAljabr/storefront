@@ -11,3 +11,16 @@ export const food = (category) => {
     payload: category,
   };
 };
+
+export const add = (category) => {
+  return {
+    type: "ADD",
+    payload: category,
+  };
+};
+export const remove = (category) => {
+  return {
+    type: "REMOVE",
+    payload: category,
+  };
+};

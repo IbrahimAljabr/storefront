@@ -1,16 +1,25 @@
 import { connect } from "react-redux";
-import { food, electronics } from "../redux/action";
+import { food, electronics, add } from "../redux/action";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
 const Category = (props) => {
   let value;
+  let name;
+  let description;
   function handleChange() {
-    if (props?.categories?.categories[0].name === "FOOD") {
-      value = 0;
-    }
-    if (props?.categories?.categories[0].name === "ELECTRONICS") {
-      value = 1;
+    if (props?.categories?.categories[0]) {
+      if (props?.categories?.categories[0].name === "FOOD") {
+        value = 0;
+        name = props?.categories?.categories[0].displayName;
+        description = props?.categories?.categories[0].description;
+      }
+      if (props?.categories?.categories[0].name === "ELECTRONICS") {
+        value = 1;
+        name = props?.categories?.categories[0].displayName;
+
+        description = props?.categories?.categories[0].description;
+      }
     }
   }
   return (
@@ -32,8 +41,8 @@ const Category = (props) => {
         </Tabs>
       </div>
       <div id="categoryTitle">
-        <h3>{props?.categories?.categories[0].displayName}</h3>
-        <p>{props?.categories?.categories[0].description}</p>
+        <h3>{name}</h3>
+        <p>{description}</p>
       </div>
     </section>
   );

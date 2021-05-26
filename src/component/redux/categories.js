@@ -11,7 +11,7 @@ const initialState = {
       description: "Where you can buy Electronics .",
     },
   ],
-  activeCategory: null,
+  activeCategory: [],
 };
 
 const categoriesList = (state, action) => {
@@ -22,18 +22,18 @@ const categoriesList = (state, action) => {
   switch (type) {
     case "FOOD":
       activeCategory = payload;
-      categories = state.categories.filter((category) => {
+      state.activeCategory = state.categories.filter((category) => {
         return category.name === payload;
       });
-      return { categories, activeCategory };
+      return { categories: state.activeCategory };
     case "ELECTRONICS":
       activeCategory = payload;
-      categories = state.categories.filter((category) => {
+      state.activeCategory = state.categories.filter((category) => {
         return category.name === payload;
       });
-      return { categories, activeCategory };
+      return { categories: state.activeCategory };
     default:
-      return null;
+      return { categories: state.activeCategory };
   }
 };
 
