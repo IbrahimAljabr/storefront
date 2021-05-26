@@ -49,7 +49,7 @@ export default function CartList() {
               <Grid item xs={9}>
                 <Typography>{item}</Typography>
               </Grid>
-              <Grid item xs={3}>
+              {/* <Grid item xs={3}>
                 <Button
                   size="small"
                   color="secondary"
@@ -59,7 +59,7 @@ export default function CartList() {
                 >
                   <DeleteOutlinedIcon />
                 </Button>
-              </Grid>
+              </Grid> */}
             </AccordionDetails>
           );
         })}
