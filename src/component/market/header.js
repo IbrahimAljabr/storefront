@@ -28,7 +28,7 @@ export default function Nav() {
       <AppBar className="navbarr" color="default" position="static">
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
-            Store
+            Our Store
           </Typography>
           <IconButton aria-label="cart">
             <Badge badgeContent={state.number.num} color="secondary">

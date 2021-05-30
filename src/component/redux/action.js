@@ -18,9 +18,17 @@ export const add = (category) => {
     payload: category,
   };
 };
+
 export const remove = (category) => {
   return {
     type: "REMOVE",
+    payload: category,
+  };
+};
+
+export const get = (category) => {
+  return {
+    type: "GET",
     payload: category,
   };
 };
