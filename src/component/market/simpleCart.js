@@ -11,12 +11,11 @@ import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 
 export default function CartList() {
   const state = useSelector((state) => {
-    console.log("🚀🚀🚀 ~~~~ state ~~~~ state", state);
+    // console.log("🚀🚀🚀 ~~~~ state ~~~~ state", state);
     return {
       list: state,
     };
   });
-  // console.log("🚀🚀🚀 ~~~~ state ~~~~ state", state);
 
   const dispatch = useDispatch();
 

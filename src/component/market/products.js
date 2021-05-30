@@ -10,14 +10,28 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { electronics, food, add } from "../redux/action";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { get } from "../redux/action";
+
+const api = "https://api-js401.herokuapp.com/api/v1/products";
 
 const Products = (props) => {
   let products = [];
-  if (props?.products?.arrOfProducts) {
-    products = props.products.arrOfProducts.filter((product) => {
-      return product.inventory > 0;
+  if (props?.products?.products) {
+    products = props.products.products.filter((product) => {
+      return product.inStock > 0;
     });
   }
+  const state = useSelector((state) => {
+    return { cart: state };
+  });
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(get());
+  }, []);
+
   return (
     <Box className="con-all">
       <Container>
@@ -43,7 +57,7 @@ const Products = (props) => {
                         {product.description}
                       </Typography>
                       <Typography variant="body" color="textSecondary" component="p">
-                        {product.inventory} Left
+                        {product.inStock} Left
                       </Typography>
                     </CardContent>
                   </CardActionArea>
